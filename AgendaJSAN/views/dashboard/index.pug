@@ -1,0 +1,90 @@
+extends layout
+
+block content
+  div(class="row")
+    div(class="page-header")
+      h2 Contactos
+  div(class="row")
+    div(class="col-md-10")
+      h2 Contactos
+      button(type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#modalAgregarContacto") Agregar
+      table(class="table table-hover")
+        thead
+          tr
+            th Nombre
+            th Apellido
+            th Direccion
+            th Telefono
+            th Correo
+            th Categoria
+            th Opciones
+        tbody(data-bind="foreach: contactos")
+          tr
+            td(data-bind="text: nombreContacto")
+            td(data-bind="text: apellido")
+            td(data-bind="text: direccion")
+            td(data-bind="text: telefono")
+            td(data-bind="text: correo")
+            td(data-bind="text: nombreCategoria")
+            td
+              div(class="btn-group")
+                button(class="btn btn-warning" data-bind="click: $root.cargar") Editar
+                button(class="btn btn-danger" data-bind="click: $root.eliminar") Eliminar
+
+  div(class="modal fade" tabindex="-1" id="modalAgregarContacto"
+         role="dialog" aria-labelledby="myModalLabel")
+      div(class="modal-dialog" role="document")
+          div(class="modal-content")
+              form(data-bind="submit: agregar")
+                  div(class="modal-header")
+                      button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true")
+                      h3(class="modal-title") Agrega un contacto
+                  div(class="modal-body")
+                      div(class="form-group")
+                          label Nombre
+                          input(type="text" class="form-control" id="nombreContacto" data-bind="value: contactoNuevo.nombreContacto")
+                          label Apellido
+                          input(type="text" class="form-control" id="apellido" data-bind="value: contactoNuevo.apellido")
+                          label Direccion
+                          input(type="text" class="form-control" id="direccion" data-bind="value: contactoNuevo.direccion")
+                          label Telefono
+                          input(type="text" class="form-control" id="telefono" data-bind="value: contactoNuevo.telefono")
+                          label Correo
+                          input(type="text" class="form-control" id="correo" data-bind="value: contactoNuevo.correo")
+                          label Categoria
+                          select(class="form-control" data-bind="options: categoria, optionsText: 'nombreCategoria', value: categoriaSeleccionada1")  
+                  div(class="modal-footer")
+                      button(type="button" class="btn btn-default" data-dismiss="modal") Cerrar
+                      button(type="submit" class="btn btn-primary") Guardar    
+
+  div(class="modal fade" tabindex="-1" id="modalEditarContacto"  
+         role="dialog" aria-labelledby="myModalLabel" data-bind="if: contactoCargado")
+      div(class="modal-dialog" role="document")
+          div(class="modal-content")
+              form(data-bind="submit: editar")
+                  div(class="modal-header")
+                      button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true")
+                      h3(class="modal-title") Edite un contacto
+                  div(class="modal-body")
+                      div(class="form-group")
+                          label Nombre
+                          input(type="text" class="form-control" id="nombreContacto" data-bind="value: contactoCargado().nombreContacto")
+                          label Apellido
+                          input(type="text" class="form-control" id="apellido" data-bind="value: contactoCargado().apellido")
+                          label Direccion
+                          input(type="text" class="form-control" id="direccion" data-bind="value: contactoCargado().direccion")
+                          label Telefono
+                          input(type="text" class="form-control" id="telefono" data-bind="value: contactoCargado().telefono")
+                          label Correo
+                          input(type="text" class="form-control" id="correo" data-bind="value: contactoCargado().correo")
+                          label Categoria
+                          select(class="form-control" data-bind="options: categoria, optionsText: 'nombreCategoria', value: categoriaSeleccionada")  
+                  div(class="modal-footer")
+                      button(type="button" class="btn btn-default" data-dismiss="modal") Cerrar
+                      button(type="submit" class="btn btn-primary" ) Guardar                   
+  include footer
+  script(src="/javascripts/contactoCliente.js")
+            

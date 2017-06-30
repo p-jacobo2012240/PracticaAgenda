@@ -1,0 +1,21 @@
+extends layout
+block content
+  div(class="row")
+    div(class="col-md-4 col-md-offset-4")
+      h2 Iniciar Sesion
+      form(action="/autenticar" method="post")
+        div(class="form-group")
+          label Nick
+          input(type="text"
+          class="form-control"
+          name="nick")
+        div(class="form-group")
+          label Contraseña
+          input(type="password"
+          class="form-control"
+          name="contrasena")
+        div(class="form-group")
+          button(type="submit" class="btn btn-primary") Iniciar
+          a(href="/registrar" class="btn btn-success") Registrar
+
+        

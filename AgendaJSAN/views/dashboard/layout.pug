@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  body
+    nav(class="navbar navbar-inverse navbar-fixed-top")
+      div(class="container")
+        div(class="navbar-header")
+          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+            span(class="sr-only") Toggle navigation
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+
+          a(class="navbar-brand" href="/") AgendaJSAN
+
+        div(id="navbar" class="navbar-collapse collapse")
+          ul(class="nav navbar-nav")
+            li
+              a(href="/") Contactos
+            li
+              a(href="/salir") Salir
+            li
+              a(href="/categoria") Categorias
+          
+         
+             
+    div(class="container")
+      block content
+    

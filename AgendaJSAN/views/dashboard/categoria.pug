@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  div(class="row")
+    div(class="page-header")
+      h2 Categorias
+  div(class="row")
+    div(class="col-md-5")
+      h2 Categorias 
+      button(type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#modalAgregarCategoria") Agregar
+      table(class="table table-hover")
+        thead
+          tr
+            th Nombre
+
+            th Eliminar
+            
+        tbody(data-bind="foreach: categorias")
+          tr
+            td(data-bind="text: nombreCategoria")
+            td
+              div(class="btn-group")
+              button(class="btn btn-danger" data-bind="click: $root.eliminar") Eliminar 
+
+  div(class="modal fade" tabindex="-1" id="modalAgregarCategoria"
+         role="dialog" aria-labelledby="myModalLabel")
+      div(class="modal-dialog" role="document")
+          div(class="modal-content")
+              form(data-bind="submit: agregar")
+                  div(class="modal-header")
+                      button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true")
+                      h3(class="modal-title") Agrega una categoria
+                  div(class="modal-body")
+                      div(class="form-group")
+                          label Nombre
+                          input(type="text" class="form-control" id="nombreCategoria" data-bind="value: categoriaNueva.nombreCategoria")
+                  div(class="modal-footer")
+                      button(type="button" class="btn btn-default" data-dismiss="modal") Cerrar
+                      button(type="submit" class="btn btn-primary") Guardar
+
+
+  div(class="modal fade" tabindex="-1" id="modalEditarCategoria"  
+         role="dialog" aria-labelledby="myModalLabel" data-bind="if: categoriaCargada")
+      div(class="modal-dialog" role="document")
+          div(class="modal-content")
+              form(data-bind="submit: editar")
+                  div(class="modal-header")
+                      button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true")
+                      h3(class="modal-title") Edite una categoria
+                  div(class="modal-body")
+                      div(class="form-group")
+                          label Nombre
+                          input(type="text" class="form-control" id="nombreCategoria" data-bind="value: categoriaCargada().nombreCategoria")
+                  div(class="modal-footer")
+                      button(type="button" class="btn btn-default" data-dismiss="modal") Cerrar
+                      button(type="submit" class="btn btn-primary" ) Guardar
+
+  include footer
+  script(src="/javascripts/categoriaCliente.js")
+
